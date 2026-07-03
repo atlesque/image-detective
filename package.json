@@ -15,5 +15,8 @@
     "nuxt": "^4.4.8",
     "vue": "latest",
     "vue-router": "latest"
+  },
+  "dependencies": {
+    "exifr": "^7.1.3"
   }
 }
