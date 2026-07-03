@@ -4,6 +4,8 @@ export default defineNuxtConfig({
 
   css: ['~/assets/css/main.css'],
 
+  devServer: { port: 8460 },
+
   app: {
     head: {
       title: 'Image Detective',
