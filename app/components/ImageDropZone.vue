@@ -1,6 +1,6 @@
 <template>
   <div
-    class="flex flex-1 flex-col items-center justify-center p-4"
+    class="flex min-h-0 flex-1 flex-col items-center justify-center p-4"
     @dragenter.prevent="onDragEnter"
     @dragleave.prevent="onDragLeave"
     @dragover.prevent
@@ -27,7 +27,7 @@
 
     <!-- Tabbed display when image is loaded -->
     <template v-else>
-      <!-- Toolbar: tabs + change-image button -->
+      <!-- Toolbar: tabs + change-image button + fit-mode toggle -->
       <div class="flex w-full items-center gap-2 px-2">
         <UTabs
           v-model="activeTab"
@@ -35,6 +35,14 @@
           variant="link"
           :content="false"
           class="flex-1"
+        />
+        <UButton
+          :icon="fitModeIcon"
+          color="neutral"
+          variant="ghost"
+          size="sm"
+          @click="toggleFitMode"
+          :title="`Fit: ${fitModeLabel}`"
         />
         <UButton
           icon="i-lucide-image-plus"
@@ -47,18 +55,20 @@
       </div>
 
       <!-- Tab content -->
-      <div class="flex w-full flex-1 overflow-hidden">
+      <div class="flex min-h-0 w-full flex-1 overflow-auto">
         <!-- Image tab -->
         <div
           v-if="activeTab === 'image'"
-          class="flex flex-1 cursor-pointer items-center justify-center p-4"
+          class="grid flex-1 cursor-pointer overflow-auto p-4"
+          style="place-items: safe center"
           @click="openFilePicker"
           title="Click to choose another image"
         >
           <img
             :src="imageSrc"
             alt="Uploaded image"
-            class="max-h-full max-w-full rounded-lg object-contain shadow-lg"
+            class="min-h-0 min-w-0 rounded-lg object-contain shadow-lg"
+            :class="imageFitClasses"
           />
         </div>
 
@@ -80,8 +90,9 @@
 
 <script setup lang="ts">
 import type { TabsItem } from '@nuxt/ui'
+import type { FitMode } from '~/composables/useImageStore'
 
-const { imageSrc, activeTab, setImage } = useImageStore()
+const { imageSrc, activeTab, fitMode, setImage } = useImageStore()
 const isDragging = ref(false)
 const fileInputRef = ref<HTMLInputElement | null>(null)
 
@@ -89,6 +100,22 @@ const tabItems: TabsItem[] = [
   { label: 'Image', icon: 'i-lucide-image', value: 'image' },
   { label: 'Metadata', icon: 'i-lucide-file-text', value: 'metadata' },
 ]
+
+const fitModeConfig: Record<FitMode, { icon: string; label: string }> = {
+  'cover-height': { icon: 'i-lucide-arrow-up-down',  label: 'Fit height' },
+  'cover-width':  { icon: 'i-lucide-arrow-left-right', label: 'Fit width' },
+}
+
+const fitModeIcon = computed(() => fitModeConfig[fitMode.value]?.icon ?? 'i-lucide-arrow-up-down')
+const fitModeLabel = computed(() => fitModeConfig[fitMode.value]?.label ?? 'Fit height')
+
+const imageFitClasses = computed(() => {
+  return fitMode.value === 'cover-height' ? 'max-h-full' : 'max-w-full'
+})
+
+function toggleFitMode() {
+  fitMode.value = fitMode.value === 'cover-height' ? 'cover-width' : 'cover-height'
+}
 
 function openFilePicker() {
   fileInputRef.value?.click()

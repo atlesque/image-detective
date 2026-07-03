@@ -1,5 +1,5 @@
 <template>
-  <header class="sticky top-0 z-50 flex h-14 items-center justify-between border-b border-(--ui-border) bg-(--ui-bg) px-6 backdrop-blur-sm">
+  <header class="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-(--ui-border) bg-(--ui-bg) px-6">
     <div class="flex items-center gap-3">
       <img src="/favicon.svg" alt="Logo" class="h-7 w-7" />
       <span class="text-lg font-semibold tracking-tight">Image Detective</span>
