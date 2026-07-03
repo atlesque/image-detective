@@ -6,6 +6,15 @@ export default defineNuxtConfig({
 
   devServer: { port: 8460 },
 
+  ssr: true,
+
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+    },
+  },
+
   app: {
     head: {
       title: 'Image Detective',
