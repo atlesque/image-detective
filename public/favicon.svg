@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
+  <!-- Background circle -->
+  <circle cx="32" cy="32" r="30" fill="#1e293b" stroke="#64748b" stroke-width="2"/>
+
+  <!-- Image/picture frame -->
+  <rect x="12" y="12" width="26" height="26" rx="3" fill="#334155" stroke="#94a3b8" stroke-width="1.5"/>
+  <!-- Landscape inside picture -->
+  <circle cx="25" cy="22" r="5" fill="#f59e0b" opacity="0.8"/>
+  <path d="M12 32 L18 28 L24 32 L30 25 L38 38 L12 38 Z" fill="#475569"/>
+
+  <!-- Magnifying glass -->
+  <circle cx="36" cy="36" r="10" fill="none" stroke="#38bdf8" stroke-width="2.5"/>
+  <line x1="43" y1="43" x2="52" y2="52" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+</svg>

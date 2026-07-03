@@ -1,0 +1,19 @@
+{
+  "name": "image-detective",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "nuxt preview",
+    "postinstall": "nuxt prepare"
+  },
+  "devDependencies": {
+    "@iconify-json/lucide": "^1.2.115",
+    "@nuxt/ui": "^3.1.2",
+    "nuxt": "^4.4.8",
+    "vue": "latest",
+    "vue-router": "latest"
+  }
+}
