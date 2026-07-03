@@ -1,5 +1,5 @@
 <template>
-  <header class="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-(--ui-border) bg-(--ui-bg) px-6">
+  <header class="fixed inset-x-0 top-0 z-50 flex h-14 items-center justify-between border-b border-default bg-default px-6">
     <div class="flex items-center gap-3">
       <img src="/favicon.svg" alt="Logo" class="h-7 w-7" />
       <span class="text-lg font-semibold tracking-tight">Image Detective</span>
@@ -29,6 +29,6 @@ function cycleColorMode() {
   const modes = ['system', 'light', 'dark'] as const
   const current = modes.indexOf(colorMode.preference as typeof modes[number])
   const next = (current + 1) % modes.length
-  colorMode.preference = modes[next]
+  colorMode.preference = modes[next]!
 }
 </script>

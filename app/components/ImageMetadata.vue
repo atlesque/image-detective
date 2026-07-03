@@ -151,7 +151,8 @@ function formatValue(key: string, value: unknown): string {
       value.length === 3 &&
       value.every((v) => typeof v === 'number')
     ) {
-      return `${value[0]}° ${value[1]}′ ${value[2].toFixed(2)}″`
+      const [d, m, s] = value as [number, number, number]
+      return `${d}° ${m}′ ${s.toFixed(2)}″`
     }
     return value.map((v) => formatValue('', v)).join(', ')
   }
