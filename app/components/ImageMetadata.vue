@@ -196,11 +196,10 @@ function isBinaryObject(obj: Record<string, unknown>): boolean {
 }
 
 function formatLabel(key: string): string {
-  // Add spaces before capital letters for camelCase / PascalCase
+  // Insert spaces between capitalized words, keeping acronyms intact
   return key
-    .replace(/([A-Z])/g, ' $1')
-    .replace(/^ /, '')
-    .replace(/([a-z])(\d)/g, '$1 $2')
+    .replace(/([A-Z][a-z]+)/g, ' $1')
+    .replace(/\s+/g, ' ')
     .trim()
 }
 
