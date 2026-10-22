@@ -11,6 +11,9 @@ export default defineNuxtConfig({
       title: 'Image Detective',
       link: [
         { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg' }
+      ],
+      script: [
+        { src: 'https://tools.atlesque.dev/consent.js', defer: true }
       ]
     }
   },
